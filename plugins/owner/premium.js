@@ -10,9 +10,9 @@ exports.run = {
       Func
    }) => {
       let number = isNaN(text) ? (text.startsWith('+') ? text.replace(/[()+\s-]/g, '') : (text).split`@` [1]) : text
-      if (!text && !m.quoted) return client.reply(m.chat, Func.texted('bold', `🚩 Mention or reply chat target.`), m)
-      if (isNaN(number)) return client.reply(m.chat, Func.texted('bold', `🚩 Invalid number.`), m)
-      if (number.length > 15) return client.reply(m.chat, Func.texted('bold', `🚩 Invalid format.`), m)
+      if (!text && !m.quoted) return client.reply(m.chat, Func.texted('bold', `✨ Mention or reply chat target.`), m)
+      if (isNaN(number)) return client.reply(m.chat, Func.texted('bold', `✨ Invalid number.`), m)
+      if (number.length > 15) return client.reply(m.chat, Func.texted('bold', `✨ Invalid format.`), m)
       try {
          if (text) {
             var user = number + '@s.whatsapp.net'
@@ -23,19 +23,19 @@ exports.run = {
          }
       } catch (e) {} finally {
          let data = global.db.users.find(v => v.jid == user)
-         if (typeof data == 'undefined') return client.reply(m.chat, Func.texted('bold', `🚩 Can't find user data.`), m)
+         if (typeof data == 'undefined') return client.reply(m.chat, Func.texted('bold', `✨ Can't find user data.`), m)
          if (command == '+prem') {
-            // if (data.premium) return client.reply(m.chat, Func.texted('bold', `🚩 @${user.replace(/@.+/, '')} has become registered as a premium account.`), m)
+            // if (data.premium) return client.reply(m.chat, Func.texted('bold', `✨ @${user.replace(/@.+/, '')} has become registered as a premium account.`), m)
             data.limit += 1000
             data.premium = true
             data.expired = data.premium ? (86400000 * 30) : ((new Date() * 1) + (86400000 * 30))
-            client.reply(m.chat, Func.texted('bold', `🚩 Successfully added @${user.replace(/@.+/, '')} to premium user.`), m)
+            client.reply(m.chat, Func.texted('bold', `✨ Successfully added @${user.replace(/@.+/, '')} to premium user.`), m)
          } else if (command == '-prem') {
-            if (!data.premium) return client.reply(m.chat, Func.texted('bold', `🚩 Not a premium account.`), m)
+            if (!data.premium) return client.reply(m.chat, Func.texted('bold', `✨ Not a premium account.`), m)
             data.limit = env.limit
             data.premium = false
             data.expired = 0
-            client.reply(m.chat, Func.texted('bold', `🚩 @${user.replace(/@.+/, '')}'s premium status has been successfully deleted.`), m)
+            client.reply(m.chat, Func.texted('bold', `✨ @${user.replace(/@.+/, '')}'s premium status has been successfully deleted.`), m)
          }
       }
    },
